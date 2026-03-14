@@ -1,0 +1,75 @@
+<div class="container py-5">
+    <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h4 class="mb-0">ลงทะเบียนข้อมูลบ้าน</h4>
+        </div>
+        <div class="card-body p-4">
+            <form [formGroup]="homeForm" (ngSubmit)="onSubmit()" novalidate>
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">รหัสบ้าน (House ID)</label>
+                <input type="text" 
+                        formControlName="houseId" 
+                        class="form-control" 
+                        [class.is-invalid]="isFieldInvalid('houseId')"
+                        placeholder="ระบุรหัสบ้าน">
+                <div class="invalid-feedback">กรุณากรอกรหัสบ้าน</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                <label class="form-label fw-bold">ชื่อเจ้าของ</label>
+                <input type="text" 
+                    formControlName="ownerFirstName" 
+                    class="form-control" 
+                    [class.is-invalid]="isFieldInvalid('ownerFirstName')"
+                    placeholder="ชื่อ">
+                <div class="invalid-feedback">กรุณากรอกชื่อ</div>
+                </div>
+                <div class="col-6">
+                    <label class="form-label fw-bold">นามสกุล</label>
+                    <input type="text"
+                        formControlName="ownerLastName"
+                        class="form-control"
+                        [class.is-invalid]="isFieldInvalid('ownerLastName')"
+                        placeholder="นามสกุล">
+                    <div class="invalid-feedback">กรุณากรอกนามสกุล</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">เบอร์โทรศัพท์</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                    <input type="tel"
+                        formControlName="ownerTel"
+                        class="form-control"
+                        [class.is-invalid]="isFieldInvalid('ownerTel')"
+                        placeholder="08XXXXXXXX">
+                    <div class="invalid-feedback">กรุณากรอกเบอร์โทรศัพท์ 9-10 หลัก</div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-bold">อีเมล</label>
+                <input type="email"
+                        formControlName="ownerEmail"
+                        class="form-control"
+                        [class.is-invalid]="isFieldInvalid('ownerEmail')"
+                        placeholder="example@email.com">
+                <div class="invalid-feedback">กรุณากรอกอีเมลที่ถูกต้อง</div>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                บันทึกข้อมูล
+                </button>
+                <button type="button" class="btn btn-outline-secondary" (click)="homeForm.reset()">
+                    ล้างข้อมูล
+                </button>
+            </div>
+
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

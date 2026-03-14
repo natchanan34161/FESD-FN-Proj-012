@@ -1,0 +1,79 @@
+<div class="container py-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-primary">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">{{ isEditMode ? 'แก้ไขข้อมูลบ้าน' : 'เพิ่มข้อมูลบ้านใหม่' }}</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="homeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label class="form-label fw-bold">House ID</label>
+                <input type="text" formControlName="houseId" class="form-control" [class.is-invalid]="isFieldInvalid('houseId')" [readonly]="isEditMode">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="form-label fw-bold">ชื่อ</label>
+                <input type="text" formControlName="ownerFirstName" class="form-control" [class.is-invalid]="isFieldInvalid('ownerFirstName')">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="form-label fw-bold">นามสกุล</label>
+                <input type="text" formControlName="ownerLastName" class="form-control" [class.is-invalid]="isFieldInvalid('ownerLastName')">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-bold">เบอร์โทรศัพท์</label>
+                <input type="tel" formControlName="ownerTel" class="form-control" [class.is-invalid]="isFieldInvalid('ownerTel')">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-bold">อีเมล</label>
+                <input type="email" formControlName="ownerEmail" class="form-control" [class.is-invalid]="isFieldInvalid('ownerEmail')">
+              </div>
+            </div>
+            <div class="text-end">
+              <button type="button" class="btn btn-secondary me-2" (click)="homeForm.reset(); isEditMode = false;">ล้างค่า</button>
+              <button type="submit" class="btn btn-primary px-4">{{ isEditMode ? 'อัปเดตข้อมูล' : 'บันทึกข้อมูล' }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0 text-center">รายการข้อมูลทั้งหมดในระบบ</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>เบอร์โทร</th>
+                <th>อีเมล</th>
+                <th class="text-center">การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let h of houses">
+                <td>{{ h.houseId }}</td>
+                <td>{{ h.ownerFirstName }} {{ h.ownerLastName }}</td>
+                <td>{{ h.ownerTel }}</td>
+                <td>{{ h.ownerEmail }}</td>
+                <td class="text-center">
+                  <button class="btn btn-outline-warning btn-sm" (click)="selectToEdit(h)">
+                    เลือกเพื่อแก้ไข
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
